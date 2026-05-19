@@ -2,6 +2,7 @@
 
 import { db } from '@/client'
 import { currentUser } from '@clerk/nextjs/server'
+import { revalidatePath } from 'next/cache'
 import z from 'zod'
 
 const schema  = z.object({
@@ -40,12 +41,19 @@ export async function createExercise(prevState: unknown ,formData: FormData) {
             }
         }
 
-        // await db.exercise.create({
-        //     data: {
-        //         userId: user.id,
-        //         name
-        //     }
-        // })
+        await db.exercise.create({
+            data: {
+                userId: user.id,
+                name,
+                muscleGroupId: muscleGroup
+            }
+        })
+
+        revalidatePath('/')
+
+        return {
+            success: true
+        }
         
         
     } catch (error) {
