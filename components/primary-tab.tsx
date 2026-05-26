@@ -12,7 +12,7 @@ export default function PrimaryTab() {
                 <TabsTrigger value="reports">Reports</TabsTrigger>
             </TabsList>
             <TabsContent value="exercises">
-                <div className="flex flex-col p-4">
+                <div className="flex flex-col space-y-6 p-4">
                    <ExercisesParent />
                    <FormParent /> 
                 </div>
