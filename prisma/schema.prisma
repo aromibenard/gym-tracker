@@ -47,6 +47,11 @@ model Exercise {
   @@index(muscleGroupId)
 }
 
+enum SessionStatus {
+  ACTIVE
+  COMPLETED
+}
+
 model Session {
   id String @id @default(uuid())
 
@@ -58,9 +63,11 @@ model Session {
 
   sets      Set[]
   createdAt DateTime @default(now())
+  status    SessionStatus @default(ACTIVE)
 
   @@index([userId])
   @@index([perfomedAt])
+  @@index([status])
 }
 
 model Set {

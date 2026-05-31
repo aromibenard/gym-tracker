@@ -1,6 +1,7 @@
 import CreateExerciseForm from "./create-exercise-form";
 import ExercisesParent from "./exercises-parent";
 import FormParent from "./form-parent";
+import StartWorkout from "./start-workout";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 
 export default function PrimaryTab() {
@@ -14,6 +15,7 @@ export default function PrimaryTab() {
             <TabsContent value="exercises">
                 <div className="flex flex-col space-y-6 p-4">
                    <ExercisesParent />
+                   <StartWorkout />
                    <FormParent /> 
                 </div>
             </TabsContent>

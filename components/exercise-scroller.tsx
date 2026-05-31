@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils"
 import { ChevronDown, ChevronUp } from "lucide-react"
 import { useEffect, useRef, useState } from "react"
 import { motion } from "framer-motion"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "./ui/accordion"
 
 
 type ExerciseScrollerProps<T extends ExerciseWithRelations> = {
@@ -106,8 +107,8 @@ export default function ExerciseScroller<T extends ExerciseWithRelations>({
                     className='relative z-10 mx-auto flex w-full max-w-2xl flex-col justify-end px-6 pb-24 text-white'
                 >
                     {renderContent ? (
-                    renderContent(exercise)
-                    ) : (
+                        renderContent(exercise)
+                        ) : (
                     <>
                         <span className='mb-3 w-fit rounded-full bg-white/10 px-3 py-1 text-sm backdrop-blur'>
                         <p>musclegroup</p>
@@ -120,6 +121,20 @@ export default function ExerciseScroller<T extends ExerciseWithRelations>({
                         <p className='mt-4 max-w-xl text-base leading-relaxed text-zinc-200 md:text-lg'>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas
                         </p>
+
+                        <div>
+                            <Accordion type="single" collapsible className="w-full">
+                                <AccordionItem value="session-form">
+                                    <AccordionTrigger>
+                                        Log Session
+                                    </AccordionTrigger>
+                                    <AccordionContent>
+                                    
+                                    </AccordionContent>
+                                </AccordionItem>
+
+                            </Accordion>
+                        </div>
                     </>
                     )}
                 </motion.div>
