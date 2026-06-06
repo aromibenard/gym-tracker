@@ -38,10 +38,10 @@ model Exercise {
   muscleGroupId String
   muscleGroup   MuscleGroup @relation(fields: [muscleGroupId], references: [id])
 
-  sets    Set[]
   records PersonalRecord[]
 
-  createdAt DateTime @default(now())
+  createdAt DateTime          @default(now())
+  sessions  SessionExercise[]
 
   @@index(userId)
   @@index(muscleGroupId)
@@ -61,23 +61,37 @@ model Session {
   perfomedAt DateTime @default(now())
   notes      String?
 
-  sets      Set[]
-  createdAt DateTime @default(now())
-  status    SessionStatus @default(ACTIVE)
+  createdAt DateTime          @default(now())
+  status    SessionStatus     @default(ACTIVE)
+  exercises SessionExercise[]
 
   @@index([userId])
   @@index([perfomedAt])
   @@index([status])
 }
 
-model Set {
+model SessionExercise {
   id String @id @default(uuid())
+
+  sessionId String
+  session   Session @relation(fields: [sessionId], references: [id])
 
   exerciseId String
   exercise   Exercise @relation(fields: [exerciseId], references: [id])
 
-  sessionId String
-  session   Session @relation(fields: [sessionId], references: [id])
+  order     Int
+  sets      Set[]
+  createdAt DateTime @default(now())
+
+  @@unique([sessionId, exerciseId])
+  @@index([sessionId])
+}
+
+model Set {
+  id String @id @default(uuid())
+
+  sessionExerciseId String
+  sessionExercise   SessionExercise @relation(fields: [sessionExerciseId], references: [id])
 
   weight Float
   reps   Int
@@ -86,8 +100,6 @@ model Set {
   perfomedAt DateTime @default(now())
   createdAt  DateTime @default(now())
 
-  @@index([exerciseId])
-  @@index([sessionId])
   @@index([perfomedAt])
 }
 
