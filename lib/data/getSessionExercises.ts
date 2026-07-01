@@ -8,9 +8,14 @@ export default async function getSessionExercises(sessionId: string) {
             where: { sessionId },
             include: {
                 exercise: true,
-                sets: true,
+                sets: {
+                    orderBy: {
+                        order: "asc"
+                    }
+                },
             },
         });
+
         return sessionExercises;
     } catch (error) {
         console.error("Error fetching session exercises:", error);

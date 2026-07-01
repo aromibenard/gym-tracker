@@ -55,7 +55,6 @@ export async function createExercise(prevState: unknown ,formData: FormData) {
             success: true
         }
         
-        
     } catch (error) {
         console.error("Error creating exercise:", error)
         return {
