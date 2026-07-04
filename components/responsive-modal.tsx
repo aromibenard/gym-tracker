@@ -1,30 +1,37 @@
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { Dialog,
     DialogHeader, DialogDescription, 
-    DialogTitle, DialogContent 
+    DialogTitle, DialogContent, 
+    DialogTrigger
 } from "./ui/dialog";
-import { Drawer } from "./ui/drawer";
+import { Drawer, DrawerContent, DrawerDescription, DrawerHeader, DrawerTitle, DrawerTrigger } from "./ui/drawer";
 
 type ResponsiveModalProps = {
+    title?: string;
     open: boolean;
     onOpenChange: (open: boolean) => void;
-    title: string;
     description?: string;
     children: React.ReactNode;
+    trigger: React.ReactNode;
 }
 
 export function ResponsiveModal({
-    open,
-    onOpenChange,
     title,
     description,
-    children
+    children,
+    trigger,
+    open,
+    onOpenChange
 }: ResponsiveModalProps) {
+
     const isDesktop = useMediaQuery("(min-width: 768px)");
 
     if (isDesktop) {
         return (
             <Dialog open={open} onOpenChange={onOpenChange}>
+                <DialogTrigger asChild>
+                    {trigger}
+                </DialogTrigger>
                 <DialogContent>
                     <DialogHeader>
                         <DialogTitle>{title}</DialogTitle>
@@ -43,15 +50,18 @@ export function ResponsiveModal({
 
     return (
         <Drawer open={open} onOpenChange={onOpenChange}>
-            <DialogHeader>
-                <DialogTitle>{title}</DialogTitle>
+            <DrawerTrigger asChild>
+                {trigger}
+            </DrawerTrigger>
+            <DrawerHeader>
+                <DrawerTitle>{title}</DrawerTitle>
                 {description && (
-                    <DialogDescription>{description}</DialogDescription>
+                    <DrawerDescription>{description}</DrawerDescription>
                 )}
-            </DialogHeader>
-            <DialogContent>
+            </DrawerHeader>
+            <DrawerContent>
                 {children}
-            </DialogContent>
+            </DrawerContent>
         </Drawer>
     )
 }

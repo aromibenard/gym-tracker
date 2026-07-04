@@ -14,9 +14,9 @@ export default function PrimaryTab() {
             </TabsList>
             <TabsContent value="exercises">
                 <div className="flex flex-col space-y-6 p-4">
-                   <ExercisesParent />
-                   <StartWorkout />
-                   <FormParent /> 
+                    <ExercisesParent />
+                    <StartWorkout />
+                    <FormParent /> 
                 </div>
             </TabsContent>
             <TabsContent value="analytics">

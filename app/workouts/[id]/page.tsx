@@ -1,7 +1,13 @@
+import { AddExerciseModal } from "@/components/add-exercise-modal";
+import AddExerciseToSessionForm from "@/components/add-exercise-to-session-form";
+import { Card } from "@/components/card";
+import { ResponsiveModal } from "@/components/responsive-modal";
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import WorkoutHeader from "@/components/workout-header";
+import getExercises from "@/lib/data/getExercises";
 import getSessionExercises from "@/lib/data/getSessionExercises";
 import { getWorkout } from "@/lib/data/getWorkout";
+import { Suspense } from "react";
 
 type Props = {
     params: Promise<{ id: string }>
@@ -13,6 +19,7 @@ export default  async function Page({ params }: Props) {
 
     const workout = await getWorkout(id)
     const sessionExercisesPromise = getSessionExercises(id)
+    const exerciesPromise = getExercises()
 
     if (!workout) {
         return (
@@ -28,6 +35,11 @@ export default  async function Page({ params }: Props) {
             <WorkoutHeader  
                 workout={workout} 
                 sessionExercisesPromise={sessionExercisesPromise}
+            />
+
+            <AddExerciseModal 
+                exercisesPromise={exerciesPromise}
+                workoutId={workout.id}
             />
 
             <div>
