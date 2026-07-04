@@ -1,18 +1,16 @@
 'use client'
 
 import { ResponsiveModal } from "@/components/responsive-modal";
-import { Card } from "@/components/card";
-import AddExerciseToSessionForm from "@/components/add-exercise-to-session-form";
 import { Suspense, useState } from "react";
-import { ExerciseResult } from "@/lib/data/getExercises";
 import { Spinner } from "./spinner";
+import AddSetForm from "./add-set-form";
 
-export function AddExerciseModal({
-    workoutId,
-    exercisesPromise,
+export function AddSetModal({
+    sessionExerciseId,
+    workoutId
 }: {
+    sessionExerciseId: string;
     workoutId: string;
-    exercisesPromise: Promise<ExerciseResult>;
 }) {
     const [open, setOpen] = useState(false);
 
@@ -20,12 +18,12 @@ export function AddExerciseModal({
         <ResponsiveModal
             open={open}
             onOpenChange={setOpen}
-            trigger={<Card className="">Add Exercise</Card>}
+            trigger={<p className="">Add Set</p>}
         >
             <Suspense fallback={<Spinner />}>
-                <AddExerciseToSessionForm
+                <AddSetForm 
+                    sessionExerciseId={sessionExerciseId}
                     workoutId={workoutId}
-                    exercisesPromise={exercisesPromise}
                     onSuccess={() => setOpen(false)}
                 />
             </Suspense>

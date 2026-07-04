@@ -12,7 +12,7 @@ type ResponsiveModalProps = {
     onOpenChange: (open: boolean) => void;
     description?: string;
     children: React.ReactNode;
-    trigger: React.ReactNode;
+    trigger?: React.ReactNode;
 }
 
 export function ResponsiveModal({
@@ -29,9 +29,11 @@ export function ResponsiveModal({
     if (isDesktop) {
         return (
             <Dialog open={open} onOpenChange={onOpenChange}>
-                <DialogTrigger asChild>
-                    {trigger}
-                </DialogTrigger>
+                    {trigger && (
+                        <DialogTrigger asChild>
+                            {trigger}
+                        </DialogTrigger>
+                    )}
                 <DialogContent>
                     <DialogHeader>
                         <DialogTitle>{title}</DialogTitle>
@@ -50,9 +52,11 @@ export function ResponsiveModal({
 
     return (
         <Drawer open={open} onOpenChange={onOpenChange}>
-            <DrawerTrigger asChild>
-                {trigger}
-            </DrawerTrigger>
+            {trigger && (
+                <DrawerTrigger asChild>
+                    {trigger}
+                </DrawerTrigger>
+            )}
             <DrawerHeader>
                 <DrawerTitle>{title}</DrawerTitle>
                 {description && (

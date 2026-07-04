@@ -45,7 +45,7 @@ export default function AddExerciseToSessionForm({
         <div>
             <Form 
                 action={formAction}
-                className='border-2 dark:border-gray-600 p-4 flex flex-col space-y-2.5 gap-2 rounded-md w-full max-w-md'
+                className=' p-4 flex flex-col space-y-2.5 w-full'
             >
                 <div className='flex flex-col space-y-2'>
                     <input type='hidden' name='workoutId' value={workoutId} />
