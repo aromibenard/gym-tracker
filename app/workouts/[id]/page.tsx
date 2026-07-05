@@ -1,9 +1,6 @@
 import { AddExerciseModal } from "@/components/add-exercise-modal";
-import AddExerciseToSessionForm from "@/components/add-exercise-to-session-form";
-import { Card } from "@/components/card";
-import { ResponsiveModal } from "@/components/responsive-modal";
+import FinishWorkoutForm from "@/components/finish-workout-form";
 import TableParent from "@/components/session-exercises-table/table-parent";
-import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import WorkoutHeader from "@/components/workout-header";
 import getExercises from "@/lib/data/getExercises";
 import getSessionExercises from "@/lib/data/getSessionExercises";
@@ -48,6 +45,11 @@ export default  async function Page({ params }: Props) {
                     sessionId={workout.id}
                 />
             </Suspense>
+
+            <FinishWorkoutForm 
+                workoutId={workout.id}
+                
+            />
         </div>
     )
 }

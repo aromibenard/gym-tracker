@@ -1,15 +1,7 @@
 'use client'
 
-
-import { cn } from "@/lib/utils";
 import { ColumnDef } from "@tanstack/react-table";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator } from "../ui/dropdown-menu";
-import { DropdownMenuTrigger } from "../ui/dropdown-menu";
-import { MoreHorizontal } from "lucide-react";
-import { Button } from "../ui/button";
-import Link from "next/link";
 import { SessionExerciseWithRelations } from "@/lib/data/getSessionExercises";
-import { AddSetModal } from "../add-set-modal";
 import { ActionCell } from "../action-cell";
 import { EditSetModal } from "../edit-set-modal";
 import { DeleteSetModal } from "../delete-set-modal";
@@ -83,7 +75,7 @@ export const columns: ColumnDef<SessionExerciseWithRelations>[] = [
                         <span>Set {set.order}</span>
                         <span>{set.weight} kg</span>
                         <span>{set.reps} reps</span>
-                        <div className="flex ">
+                        <div className="flex space-x-1">
                             <EditSetModal 
                                 setData={set}
                                 workoutId={row.original.sessionId}

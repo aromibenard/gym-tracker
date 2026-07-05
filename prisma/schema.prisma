@@ -61,9 +61,10 @@ model Session {
   perfomedAt DateTime @default(now())
   notes      String?
 
-  createdAt DateTime          @default(now())
-  status    SessionStatus     @default(ACTIVE)
-  exercises SessionExercise[]
+  createdAt   DateTime          @default(now())
+  status      SessionStatus     @default(ACTIVE)
+  exercises   SessionExercise[]
+  completedAt DateTime?
 
   @@index([userId])
   @@index([perfomedAt])
