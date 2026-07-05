@@ -11,6 +11,7 @@ import Link from "next/link";
 import { SessionExerciseWithRelations } from "@/lib/data/getSessionExercises";
 import { AddSetModal } from "../add-set-modal";
 import { ActionCell } from "../action-cell";
+import { EditSetModal } from "../edit-set-modal";
 
 // const statusLabels: Record<ToolStatus, string> = {
 //   AVAILABLE: "Available",
@@ -71,15 +72,22 @@ export const columns: ColumnDef<SessionExerciseWithRelations>[] = [
         id: "sets",
         header: "Sets",
         cell: ({ row }) => (
-            <div className="space-y-1">
+            <div className="space-y-0.5">
                 {row.original.sets.map((set) => (
+
                     <div
                         key={set.id}
-                        className="grid grid-cols-3 text-sm gap-2"
+                        className="grid grid-cols-4 text-sm gap-0.5"
                     >
                         <span>Set {set.order}</span>
                         <span>{set.weight} kg</span>
                         <span>{set.reps} reps</span>
+                        <div className="flex gap-2">
+                            <EditSetModal 
+                                setData={set}
+                                workoutId={row.original.sessionId}
+                            />
+                        </div>
                     </div>
                 ))}
             </div>
