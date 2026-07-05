@@ -46,7 +46,7 @@ export default function EditSetForm({
                 toast.error("Please fix the highlighted errors")
             }
         }     
-    }, [state])
+    }, [state, onSuccess])
 
     return (
         <div>

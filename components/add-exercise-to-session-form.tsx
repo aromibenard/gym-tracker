@@ -39,7 +39,7 @@ export default function AddExerciseToSessionForm({
                 toast.error("Please fix the highlighted errors")
             }
         }     
-    }, [state])
+    }, [state, onSuccess])
 
     return (
         <div>

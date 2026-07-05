@@ -4,10 +4,10 @@ import { ResponsiveModal } from "@/components/responsive-modal";
 import { Suspense, useState } from "react";
 import { Spinner } from "./spinner";
 import { Set } from "@/app/generated/prisma";
-import EditSetForm from "./edit-set-form";
-import { Pencil } from "lucide-react";
+import { Trash2 } from "lucide-react";
+import DeleteSetForm from "./delete-set-form";
 
-export function EditSetModal({
+export function DeleteSetModal({
     setData,
     workoutId
 }: {
@@ -20,10 +20,10 @@ export function EditSetModal({
         <ResponsiveModal
             open={open}
             onOpenChange={setOpen}
-            trigger={<Pencil size={20} className="h-4 w-4 text-muted-foreground hover:text-primary cursor-pointer" />}
+            trigger={<Trash2 size={20} className="h-4 w-4 text-destructive cursor-pointer" />}
         >
             <Suspense fallback={<Spinner />}>
-                <EditSetForm
+                <DeleteSetForm 
                     onSuccess={() => setOpen(false)}
                     setData={setData}
                     workoutId={workoutId}
