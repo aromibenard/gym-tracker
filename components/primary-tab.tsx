@@ -1,10 +1,14 @@
-import CreateExerciseForm from "./create-exercise-form";
 import ExercisesParent from "./exercises-parent";
 import FormParent from "./form-parent";
 import StartWorkout from "./start-workout";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
+import { Filter } from "@/lib/types";
 
-export default function PrimaryTab() {
+export default function PrimaryTab({
+    filter
+}: {
+    filter: Filter
+}) {
     return (
         <Tabs defaultValue="exercises">
             <TabsList>
@@ -20,7 +24,8 @@ export default function PrimaryTab() {
                 </div>
             </TabsContent>
             <TabsContent value="analytics">
-                <div className="flex flex-col items-center justify-center p-4">
+                <div className="flex 2. Volume Over Time">
+
 
                 </div>
             </TabsContent>
@@ -31,4 +36,4 @@ export default function PrimaryTab() {
             </TabsContent>
         </Tabs>
     )
-}
+} 
